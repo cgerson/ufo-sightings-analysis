@@ -5,7 +5,7 @@ import nltk.data
 from nltk.corpus import stopwords
 from pymongo import MongoClient
 import sys
-sys.path.insert(0, './text2num/')
+#sys.path.insert(0, './text2num/')
 import text2num
 tok = nltk.data.load('tokenizers/punkt/english.pickle') #sentence splitting
 
@@ -190,15 +190,18 @@ client = MongoClient(host="54.69.198.239",port=27017)
 db = client.UFO
 col = db.Summaries
 
-for doc in col.find():
-    print doc['_id']
-    text = doc['text']
-    bag_of_words = summary_to_list(text)
-    sentences = summary_to_sent(text)
-    adj_sent = adjs(sentences)
-    col.update_one({'_id':doc['_id']}, {"$set": {"bag_of_words":bag_of_words,
+def update_docs():
+    for doc in col.find():
+        print doc['_id']
+        text = doc['text']
+        bag_of_words = summary_to_list(text)
+        sentences = summary_to_sent(text)
+        adj_sent = adjs(sentences)
+        col.update_one({'_id':doc['_id']}, {"$set": {"bag_of_words":bag_of_words,
                                     "word_2_vec_sentences":sentences,
                                    "adj":adj_sent}})
+
+
 
 
 

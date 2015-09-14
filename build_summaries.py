@@ -15,7 +15,7 @@ for item in num_dirs:
     files = glob.glob(path)
     for name in files:
         summary = {}
-        summary["link"]=str(name[-15:-5])
+        summary["link"]=str(name[-15:-5]) #change, links from dir 100 on are longer (should try to capture up until / only)
         try:
             with open(name) as f:
                 soup = BeautifulSoup(f,"html.parser")
