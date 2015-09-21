@@ -38,4 +38,4 @@ Then set up script to determine most similar UFO sighting to a given, new sighti
 
 ###App
 
-This script was eventually used to set up <a href = "ufosho.herokuapp.com" target="_blank">ufosho.herokuapp.com</a>, a tool to search for similar UFO sightings in time, location and written description. 
+This script was eventually used to set up <a href = "http://ufosho.herokuapp.com" target="_blank">ufosho.herokuapp.com</a>, a tool to search for similar UFO sightings in time, location and written description. 
