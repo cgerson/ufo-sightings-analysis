@@ -2,6 +2,9 @@
 
 This repo holds my code and methods for an analysis of UFO sightings reports in the US. Raw data can be found at NUFORC's online <a href = "http://www.nuforc.org/webreports.html" target="_blank">UFO sightings database</a>.
 
+The purpose of this analysis was to find the most "credible" sightings according to a number of factors (currently by number of similar reports). Analysis is ongoing.
+
+
 ###Code to collect:
 
 I used the "wget" command to scrape 99,477 UFO sightings descriptions (summaries) from the NUFORC site. Essentially followed <a href = "http://blog.scotterussell.com/post/93524577748/ufo-data-science-how-we-get-data-part-2" target="_blank">this tutorial</a>.
@@ -17,14 +20,22 @@ The summaries were filtered and stripped of punctuation (in prep for word2vec an
 
 The rest of the metadata was cleaned and expanded to include more fields. See "ufo_builddb.ipynb" for iPython notebook script.
 
-Geocodes were done separately and in batches, so as not to exceed Nominatim's usage policy. See "geocode.py" for script.
+Geocodes were done separately and in batches, so as not to exceed <b>Nominatim's</b> usage policy. See "geocode.py" for script.
+
+Distance to nearest airport or military base was calculated for each sighting. See "airports.dat" (<a href = "http://openflights.org/data.html" target="_blank">source</a>) and "bases.js" (<a href = "http://empire.is/" target="_blank">source</a>) for data. Then used the Haversine formula to compute distance between sighting and all possible airports/military bases, and returned minimum distance for each one.
 
 Census population data was combined to find population of location at time of sighting, and filter out non-US locations. See "1790-2010_MASTER.csv" for data. Source: U.S. <a href = "https://github.com/cestastanford/historical-us-city-populations" target="_blank">Census Bureau and Erik Steiner, Spatial History Project, Center for Spatial and Textual Analysis, Stanford University</a>. 
 
 This resulted in 52,150 complete UFO sightings. See "52150_locations_USA_census_nonull.csv" for data.
 
+
 ###Code to analyze:
 
-Found pairwise distance between all sightings and binned datetime data to cluster sightings. See "ufo_pairwisedist.ipynb" iPython notebook for script.
+Found pairwise distances between all sightings, grouped them into components with <b>NetworkX</b> and binned datetime data to cluster sightings. Next, I assigned each sighting an index equal to the number of sightings within its componenet. This was coined its "credibility index". See "ufo_pairwisedist.ipynb" iPython notebook for script.
 
-Then set up script to determine most similar UFO sighting to a given, new sighting. See "closest_sightings.py" for script. This script was eventually used to set up ufosho.herokuapp.com, a tool to search for similar UFO sightings in time, location and written description. 
+Then set up script to determine most similar UFO sighting to a given, new sighting. See "closest_sightings.py" for script.
+
+
+###App
+
+This script was eventually used to set up <a href = "ufosho.herokuapp.com" target="_blank">ufosho.herokuapp.com</a>, a tool to search for similar UFO sightings in time, location and written description. 
