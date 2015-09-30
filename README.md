@@ -39,3 +39,8 @@ Then set up script to determine most similar UFO sighting to a given, new sighti
 ###App
 
 This script was eventually used to set up <a href = "http://ufosho.herokuapp.com" target="_blank">ufosho.herokuapp.com</a>, a tool to search for similar UFO sightings in time, location and written description. 
+
+
+###Presentation
+
+This project was presented on Sept 18, 2015 at Metis Data Science Bootcamp Career Day. The complete deck is <a href = "https://slides.com/claireger/ufo-sightings-credibility" target="_blank">here</a>.
