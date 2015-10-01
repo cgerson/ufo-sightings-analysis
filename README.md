@@ -31,9 +31,9 @@ This resulted in 52,150 complete UFO sightings. See "52150_locations_USA_census_
 
 ###Code to analyze:
 
-Found pairwise distances between all sightings, grouped them into components with <b>NetworkX</b> and binned datetime data to cluster sightings. Next, I assigned each sighting an index equal to the number of sightings within its componenet. This was coined its "credibility index". See "ufo_pairwisedist.ipynb" iPython notebook for script.
+Found pairwise distances between all sightings, grouped them into components with <b>NetworkX</b> and binned datetime data to cluster sightings. Next, I assigned each sighting an index equal to the number of sightings within its component. This was coined its "credibility index". See "ufo_pairwisedist.ipynb" iPython notebook for script.
 
-Then set up script to determine most similar UFO sighting to a given, new sighting. See "closest_sightings.py" for script.
+Then set up script to determine most similar UFO sighting to a given, new sighting. Each new description was converted into a Tf-idf matrix and compared to existing summaries by euclidean distance. See "closest_sightings.py" for script.
 
 
 ###App
